@@ -1,11 +1,26 @@
 import React, {useState} from "react";
 import { CirclarProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
 import useStyles from './styles';
 
 const List = () => {
   const classes = useStyles();
-  const [type, setType] = useState();
+  const [type, setType] = useState('resturants');
+  const [rating, setRating] = useState('');
+
+  const places = [
+    { name: "best place" },
+    { name: "cool place" },
+    { name: "african place" },
+    { name: "cool place" },
+    { name: "asian place" },
+    { name: "cool place" },
+    { name: "fulani place" },
+    { name: "cool place" },
+    { name: "computer place" },
+    { name: "cool place" },
+  ];
 
   return
   <div className={classes.container}>
@@ -14,13 +29,33 @@ const List = () => {
     </Typography>
     <FormControl className={classes.formControl}>
       <InputLabel>Type</InputLabel>
-      <Select value={""} onChange={}>
-        <ManuItem value="resturants"> Resturants</ManuItem>
-        <ManuItem value="hotels"> Hotels</ManuItem>
-        <ManuItem value="attractions"> Attractions</ManuItem>
+      <Select value={type} onChange={(e) => setType(e.target.value)}>
+        <MenuItem value="resturants"> Resturants </MenuItem>
+        <MenuItem value="hotels"> Hotels </MenuItem>
+        <MenuItem value="attractions"> Attractions </MenuItem>
       </Select>
     </FormControl>
-  </div>;
+
+    <FormControl className={classes.formControl}>
+      <InputLabel>Rating</InputLabel>
+      <Select value={rating} onChange={(e) => setRating(e.target.value)}>
+        <MenuItem value={0}> All</MenuItem>
+        <MenuItem value={3}> Above 3.0</MenuItem>
+        <MenuItem value={4}> Above 4.0</MenuItem>
+        <MenuItem value={4.5}> Above 4.5</MenuItem>
+      </Select>
+    </FormControl>
+
+    <Grid container spacing={3} className={classes.list}>
+      {places ?.map((place, i) => (
+        <Grid item key={i} xm={12}>
+          <PlaceDetails place={place} />
+        </Grid>
+      ))}
+
+    </Grid>
+
+  </div>
 };
 
 export default List;
