@@ -2,9 +2,7 @@ import React from "react";
 
 const PlaceDetails = ({ place }) => {
   return (
-    <div>
-
-    </div>
+    <h1>{place.name}</h1>
   );
 }      
 
